@@ -23,13 +23,9 @@ export const Navbar = () => {
                                 <Link to='/'className="nav-link"> Home 
                                     <span className="visually-hidden">(current)</span>
                                 </Link>
-                                {/* <a className="nav-link" href="#">Home
-                                    <span className="visually-hidden">(current)</span>
-                                </a> */}
                             </li>
                             <li className="nav-item">
                                 <Link to='/register' className="nav-link"> Register </Link>
-                                {/* <a className="nav-link" href="#"> Register </a> */}
                             </li>
                             <li className="nav-item">
                                 <a className="nav-link" href="#"> Appointments </a>
