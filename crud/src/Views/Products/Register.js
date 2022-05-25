@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Register.css'
 
 export const Register = () => {
@@ -13,6 +13,13 @@ export const Register = () => {
 
   const [form, setForm] = useState(initialData);
 
+  useEffect(() => {
+    if (localStorage.getItem('DataForm')) {
+      const storedList = localStorage.getItem('DataForm')
+      setForm(storedList);
+    }
+  }, [])
+
   const getData = (e) => {
     const value = e.target.value;
     const name = e.target.name;
@@ -22,11 +29,11 @@ export const Register = () => {
 
   const submitForm = () => {
     console.log(form)
+    localStorage.setItem('DataForm', JSON.stringify(form))
   }
   
   const clearForm = () => {
     setForm(initialData)
-    console.log(form)
   }
 
   return (
