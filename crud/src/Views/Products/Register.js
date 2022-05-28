@@ -3,6 +3,8 @@ import './Register.css'
 
 export const Register = () => {
 
+  const PRODUCTS = '_PRODUCTS'
+
   const initialData = {
     Name: '', 
     SKU: '', 
@@ -11,22 +13,42 @@ export const Register = () => {
     Provider: ''
   };
 
-  const [form, setForm] = useState(initialData);
+  const [form, setForm] = useState([]);
 
   const getData = (e) => {
     const value = e.target.value;
     const name = e.target.name;
-
     setForm({...form ,[name]:value })
   }
-
+  
   const submitForm = () => {
+    const product = {
+      Name: form.Name, 
+      SKU: form.SKU, 
+      Description: form.Description, 
+      Price: form.Price, 
+      Provider: form.Provider
+    };
+    saveInLocalStorage(product);
     console.log(form)
   }
   
   const clearForm = () => {
     setForm(initialData)
     console.log(form)
+  }
+
+  const saveInLocalStorage = (product) => {
+    let products = localStorage.getItem(PRODUCTS)
+
+    if(!products){
+      products = []    
+    }else{
+      products = JSON.parse(products)
+    }
+    products.push(product);
+    localStorage.setItem(PRODUCTS , JSON.stringify(products))
+    clearForm();
   }
 
   return (
