@@ -1,0 +1,14 @@
+.toast{
+  width: 150px;
+    position: absolute;
+    top: 3%;
+    right: 3%;
+  }
+.me-auto{
+    color: #167107 !important;
+}
+
+.success{
+  background-color: rgb(65, 253, 65, 0.54);  
+}
+

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { DoneMessage } from '../../Components/DoneMessage';
 import './Register.css'
 
 export const Register = () => {
@@ -10,10 +11,11 @@ export const Register = () => {
     SKU: '', 
     Description: '', 
     Price: 0, 
-    Provider: ''
+    Provider: '',
+    Success: false
   };
 
-  const [form, setForm] = useState([]);
+  const [form, setForm] = useState(initialData);
 
   const getData = (e) => {
     const value = e.target.value;
@@ -30,12 +32,12 @@ export const Register = () => {
       Provider: form.Provider
     };
     saveInLocalStorage(product);
+    setForm({ Success: true })
     console.log(form)
   }
   
   const clearForm = () => {
     setForm(initialData)
-    console.log(form)
   }
 
   const saveInLocalStorage = (product) => {
@@ -54,6 +56,7 @@ export const Register = () => {
   return (
     <div className='card'>
       <div className='card-header'>
+      {form.Success && <DoneMessage/>}
         <span> Product registration </span>
         <div className='card-body'>
           <div className='row'>
@@ -61,14 +64,14 @@ export const Register = () => {
             <div className='col-md-6'>
               <div className='form-group'>
                 <label> *Name: </label>
-                <input type='text' className='form-control'  onChange={getData} name='Name' value={form.Name}/>
+                <input type='text' className='form-control'  onChange={getData} name='Name' value={form.Name} required/>
               </div>
             </div>
 
             <div className='col-md-6'>
               <div className='form-group'>
                 <label> *SKU: </label>
-                <input type='text' className='form-control' onChange={getData} name='SKU' value={form.SKU}/>
+                <input type='text' className='form-control' onChange={getData} name='SKU' value={form.SKU} required/>
               </div>
             </div>
           </div>
@@ -86,14 +89,14 @@ export const Register = () => {
             <div className='col-md-6'>
               <div className='form-group'>
                 <label> *Price: </label>
-                <input type='text' className='form-control' onChange={getData} name='Price' value={form.Price}/>
+                <input type='text' className='form-control' onChange={getData} name='Price' value={form.Price} required/>
               </div>
             </div>
 
             <div className='col-md-6'>
               <div className='form-group'>
                 <label> *Provider: </label>
-                <input type='text' className='form-control' onChange={getData} name='Provider' value={form.Provider}/>
+                <input type='text' className='form-control' onChange={getData} name='Provider' value={form.Provider} required/>
               </div>
             </div>
           </div>
@@ -101,15 +104,13 @@ export const Register = () => {
           
           <div className='row'>
             <div className='col-md-1'>
-              <button className='btn btn-success' onClick={submitForm}> Save </button>
+              <button className='btn btn-success' type='submit' onClick={submitForm}> Save </button>
             </div>
 
             <div className='col-md-1'>
               <button className='btn btn-primary' onClick={clearForm}> Clear </button>
             </div>
           </div>
-
-
 
         </div>
       </div>
