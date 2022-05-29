@@ -3,6 +3,7 @@
     position: absolute;
     top: 3%;
     right: 3%;
+    animation: toLeft .5s ;
   }
 .me-auto{
     color: #167107 !important;
@@ -12,3 +13,14 @@
   background-color: rgb(65, 253, 65, 0.54);  
 }
 
+@keyframes toLeft {
+  0%{
+    right: 0%;
+  }
+  60%{
+    right: 3.7%;
+  }
+  100%{
+    right: 3%;
+  }
+}

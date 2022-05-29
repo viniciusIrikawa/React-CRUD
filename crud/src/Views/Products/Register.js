@@ -53,10 +53,24 @@ export const Register = () => {
     clearForm();
   }
 
+  const closeMessage = () => {
+    setForm({ Success: false })
+  }
+
   return (
     <div className='card'>
       <div className='card-header'>
-      {form.Success && <DoneMessage/>}
+      {/* {form.Success && <DoneMessage/>} */}
+      {form.Success && 
+        <div className="toast show " role="alert" aria-live="assertive" aria-atomic="true">
+              <div className="toast-header success">
+                  <strong className="me-auto"> Done! </strong>
+                  <button type="button" className="btn-close ms-2 mb-1" data-bs-dismiss="toast" aria-label="Close" onClick={closeMessage}>
+                      <span aria-hidden="true"></span>
+                  </button>
+              </div>
+          </div>}
+        {/* <DoneMessage successState = {form.Success}/> */}
         <span> Product registration </span>
         <div className='card-body'>
           <div className='row'>
