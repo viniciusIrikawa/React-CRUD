@@ -31,9 +31,10 @@ export const Register = () => {
       Price: form.Price, 
       Provider: form.Provider
     };
+    setForm({ Success: true });
     saveInLocalStorage(product);
-    setForm({ Success: true })
-    console.log(form)
+    // clearForm();
+    console.log(form);
   }
   
   const clearForm = () => {
@@ -50,27 +51,14 @@ export const Register = () => {
     }
     products.push(product);
     localStorage.setItem(PRODUCTS , JSON.stringify(products))
-    clearForm();
-  }
-
-  const closeMessage = () => {
-    setForm({ Success: false })
   }
 
   return (
     <div className='card'>
       <div className='card-header'>
-      {/* {form.Success && <DoneMessage/>} */}
-      {form.Success && 
-        <div className="toast show " role="alert" aria-live="assertive" aria-atomic="true">
-              <div className="toast-header success">
-                  <strong className="me-auto"> Done! </strong>
-                  <button type="button" className="btn-close ms-2 mb-1" data-bs-dismiss="toast" aria-label="Close" onClick={closeMessage}>
-                      <span aria-hidden="true"></span>
-                  </button>
-              </div>
-          </div>}
-        {/* <DoneMessage successState = {form.Success}/> */}
+
+      {form.Success && <DoneMessage/>}
+
         <span> Product registration </span>
         <div className='card-body'>
           <div className='row'>
@@ -94,7 +82,7 @@ export const Register = () => {
             <div className='col-md-12'>
               <div className='form-group'>
                 <label> Description: </label>
-                <textarea className='form-control' onChange={getData} name='Description' value={form.Description}/>
+                <textarea className='form-control' onChange={getData} name='Description' value={form.Description} required/>
               </div>
             </div>
           </div>
@@ -103,7 +91,7 @@ export const Register = () => {
             <div className='col-md-6'>
               <div className='form-group'>
                 <label> *Price: </label>
-                <input type='text' className='form-control' onChange={getData} name='Price' value={form.Price} required/>
+                <input type='text' className='form-control' onChange={getData} name='Price' value={form.Price } required/>
               </div>
             </div>
 
