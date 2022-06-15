@@ -1,14 +1,19 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 export const Appointments = () => {
 
   const [products, setProducts] = useState([]);
 
+  // useEffect(() => {
+  //   const teste = localStorage.getItem('_PRODUCTS')
+  //   console.log(teste)
+  // }, [])
+
   return (
       <div className='card'>
         <div className='card-header'> Registered Products </div>
         <div className='card-body'>
-          <table class="table table-hover">
+          <table className="table table-hover">
             <thead>
               <tr className='table-active'>
                 <th scope="col"> Name </th>
