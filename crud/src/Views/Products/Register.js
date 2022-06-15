@@ -31,7 +31,7 @@ export const Register = () => {
       Price: form.Price, 
       Provider: form.Provider
     };
-    setForm({ Success: true });
+    setForm({...initialData, Success: true });
     saveInLocalStorage(product);
     // clearForm();
     console.log(form);
