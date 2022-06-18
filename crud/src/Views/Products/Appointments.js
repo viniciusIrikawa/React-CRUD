@@ -19,6 +19,7 @@ export const Appointments = () => {
   const deleteData = (index) => {
     const obj = storedList().filter((item, i) => i !== index)
     localStorage.setItem('_PRODUCTS', JSON.stringify(obj))
+    window.location.reload();
   }
 
   return (
