@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Link, useNavigate } from 'react-router-dom';
 import './Appointments.css'
 
 export const Appointments = () => {
@@ -45,7 +46,12 @@ export const Appointments = () => {
                     <td> {item.Price} </td>
                     <td> {item.Provider} </td>
                     <td> 
-                      <button className='btn btn-primary'> Edit </button> 
+                      <Link to={{
+                        pathname: `/register/${item.SKU}`,
+                        state: item.Name
+                      }}>
+                        <button className='btn btn-primary'> Edit </button> 
+                      </Link>
                       <button className='btn btn-danger' onClick={() => deleteData(index)}> Delete </button>
                     </td>
                   </tr>

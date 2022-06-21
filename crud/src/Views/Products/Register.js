@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
+import { useParams } from 'react-router-dom';
 import { DoneMessage } from '../../Components/DoneMessage';
 import './Register.css'
 
 export const Register = () => {
 
+  const sku = useParams();
+  
   const PRODUCTS = '_PRODUCTS'
 
   const initialData = {
