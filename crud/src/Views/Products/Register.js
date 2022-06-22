@@ -1,12 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { DoneMessage } from '../../Components/DoneMessage';
 import './Register.css'
 
 export const Register = () => {
 
-  const sku = useParams();
-  
   const PRODUCTS = '_PRODUCTS'
 
   const initialData = {
@@ -19,6 +17,23 @@ export const Register = () => {
   };
 
   const [form, setForm] = useState(initialData);
+
+  const {sku} = useParams();
+  
+  useEffect(() => {
+    if(sku){
+      let products = localStorage.getItem(PRODUCTS)
+      const parseProducts = JSON.parse(products)
+  
+      const result = parseProducts.filter( item => item.SKU === sku)
+      if(result.length === 1){
+        const productFound = result[0]
+        console.log(productFound)
+        setForm({...productFound})
+      }
+    }
+  }, [])
+
 
   const getData = (e) => {
     const value = e.target.value;
