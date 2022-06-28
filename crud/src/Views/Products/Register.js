@@ -22,10 +22,10 @@ export const Register = () => {
   
   useEffect(() => {
     if(sku){
-      let products = localStorage.getItem(PRODUCTS)
-      const parseProducts = JSON.parse(products)
+      let products = JSON.parse(localStorage.getItem(PRODUCTS))
+      // const parseProducts = JSON.parse(products)
   
-      const result = parseProducts.filter( item => item.SKU === sku)
+      const result = products.filter( item => item.SKU === sku)
       if(result.length === 1){
         const productFound = result[0]
         console.log(productFound)
@@ -59,6 +59,19 @@ export const Register = () => {
     setForm(initialData)
   }
 
+  const getIndex = (sku) => {
+    let index = null;
+    let products = JSON.parse(localStorage.getItem(PRODUCTS))
+    
+    products.forEach( (el, i) => {
+        if (el.SKU === sku) {
+          index = i;
+        }  
+    });
+    return index;
+
+  }
+
   const saveInLocalStorage = (product) => {
     let products = localStorage.getItem(PRODUCTS)
 
@@ -67,7 +80,14 @@ export const Register = () => {
     }else{
       products = JSON.parse(products)
     }
-    products.push(product);
+
+    const index = getIndex(product.SKU)
+    if (index === null) {
+      products.push(product);
+    }else{
+      products[index] = product
+    }
+
     localStorage.setItem(PRODUCTS , JSON.stringify(products))
   }
 
