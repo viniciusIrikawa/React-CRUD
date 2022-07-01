@@ -41,7 +41,8 @@ export const Register = () => {
     setForm({...form ,[name]:value })
   }
   
-  const submitForm = () => {
+  const submitForm = (evt) => {
+    evt.preventDefault();
     const product = {
       Name: form.Name, 
       SKU: form.SKU, 
@@ -100,59 +101,60 @@ export const Register = () => {
         <span> {form.Updating ? 'Edit product' : 'Product registration'} </span>
         
         <div className='card-body'>
-          <div className='row'>
+          <form id='formProduct' onSubmit={submitForm}>
+            <div className='row'>
 
-            <div className='col-md-6'>
-              <div className='form-group'>
-                <label> *Name: </label>
-                <input type='text' className='form-control'  onChange={getData} name='Name' value={form.Name} required/>
+              <div className='col-md-6'>
+                <div className='form-group'>
+                  <label> *Name: </label>
+                  <input type='text' className='form-control'  onChange={getData} name='Name' value={form.Name} required/>
+                </div>
+              </div>
+
+              <div className='col-md-6'>
+                <div className='form-group'>
+                  <label> *SKU: </label>
+                  <input type='text' className='form-control' onChange={getData} name='SKU' value={form.SKU} disabled={form.Updating} required/>
+                </div>
               </div>
             </div>
 
-            <div className='col-md-6'>
-              <div className='form-group'>
-                <label> *SKU: </label>
-                <input type='text' className='form-control' onChange={getData} name='SKU' value={form.SKU} disabled={form.Updating} required/>
-              </div>
-            </div>
-          </div>
-
-          <div className='row'>
-            <div className='col-md-12'>
-              <div className='form-group'>
-                <label> Description: </label>
-                <textarea className='form-control' onChange={getData} name='Description' value={form.Description} required/>
-              </div>
-            </div>
-          </div>
-
-          <div className='row'>
-            <div className='col-md-6'>
-              <div className='form-group'>
-                <label> *Price: </label>
-                <input type='text' className='form-control' onChange={getData} name='Price' value={form.Price } required/>
+            <div className='row'>
+              <div className='col-md-12'>
+                <div className='form-group'>
+                  <label> Description: </label>
+                  <textarea className='form-control' onChange={getData} name='Description' value={form.Description} required/>
+                </div>
               </div>
             </div>
 
-            <div className='col-md-6'>
-              <div className='form-group'>
-                <label> *Provider: </label>
-                <input type='text' className='form-control' onChange={getData} name='Provider' value={form.Provider} required/>
+            <div className='row'>
+              <div className='col-md-6'>
+                <div className='form-group'>
+                  <label> *Price: </label>
+                  <input type='text' className='form-control' onChange={getData} name='Price' value={form.Price } required/>
+                </div>
+              </div>
+
+              <div className='col-md-6'>
+                <div className='form-group'>
+                  <label> *Provider: </label>
+                  <input type='text' className='form-control' onChange={getData} name='Provider' value={form.Provider} required/>
+                </div>
               </div>
             </div>
-          </div>
+            
+            <div className='row'>
+              <div className='col-md-1'>
+                <button className='btn btn-success' type='submit'> {form.Updating ? 'Update' : 'Save'} </button>
+              </div>
 
-          
-          <div className='row'>
-            <div className='col-md-1'>
-              <button className='btn btn-success' type='submit' onClick={submitForm}> Save </button>
+              <div className='col-md-1'>
+                <button className='btn btn-primary' onClick={clearForm}> Clear </button>
+              </div>
             </div>
 
-            <div className='col-md-1'>
-              <button className='btn btn-primary' onClick={clearForm}> Clear </button>
-            </div>
-          </div>
-
+          </form>
         </div>
       </div>
     </div>
