@@ -13,7 +13,8 @@ export const Register = () => {
     Description: '', 
     Price: 0, 
     Provider: '',
-    Success: false
+    Success: false,
+    Updating: false
   };
 
   const [form, setForm] = useState(initialData);
@@ -23,13 +24,12 @@ export const Register = () => {
   useEffect(() => {
     if(sku){
       let products = JSON.parse(localStorage.getItem(PRODUCTS))
-      // const parseProducts = JSON.parse(products)
   
       const result = products.filter( item => item.SKU === sku)
       if(result.length === 1){
         const productFound = result[0]
         console.log(productFound)
-        setForm({...productFound})
+        setForm({...productFound, Updating: true})
       }
     }
   }, [])
@@ -97,7 +97,8 @@ export const Register = () => {
 
       {form.Success && <DoneMessage/>}
 
-        <span> Product registration </span>
+        <span> {form.Updating ? 'Edit product' : 'Product registration'} </span>
+        
         <div className='card-body'>
           <div className='row'>
 
@@ -111,7 +112,7 @@ export const Register = () => {
             <div className='col-md-6'>
               <div className='form-group'>
                 <label> *SKU: </label>
-                <input type='text' className='form-control' onChange={getData} name='SKU' value={form.SKU} required/>
+                <input type='text' className='form-control' onChange={getData} name='SKU' value={form.SKU} disabled={form.Updating} required/>
               </div>
             </div>
           </div>
