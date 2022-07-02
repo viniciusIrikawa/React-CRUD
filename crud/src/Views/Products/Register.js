@@ -42,7 +42,8 @@ export const Register = () => {
   }
   
   const submitForm = (evt) => {
-    evt.preventDefault();
+    evt.preventDefault(); 
+
     const product = {
       Name: form.Name, 
       SKU: form.SKU, 
@@ -150,7 +151,7 @@ export const Register = () => {
               </div>
 
               <div className='col-md-1'>
-                <button className='btn btn-primary' onClick={clearForm}> Clear </button>
+                <button className='btn btn-primary' onClick={clearForm} disabled={form.Updating}> Clear </button>
               </div>
             </div>
 
